@@ -22,6 +22,10 @@ const usersController = require("./controllers/usersController");
 const middleware = require("./middlewares/auth");
 
 // Define Routes
+
+// Testing CI/CD Route
+app.get("/testing-ci-cd", () => "working!");
+
 // Auth
 app.post("/auth/register", upload.single("picture"), authController.register);
 app.post("/auth/login", authController.login);
