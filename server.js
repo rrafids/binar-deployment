@@ -24,7 +24,7 @@ const middleware = require("./middlewares/auth");
 // Define Routes
 
 // Testing CI/CD Route
-app.get("/testing-ci-cd", () => "working!");
+app.get("/testing-ci-cd/:id", usersController.getPostsByID);
 
 // Auth
 app.post("/auth/register", upload.single("picture"), authController.register);
