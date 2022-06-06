@@ -5,7 +5,6 @@ const { ROLES } = require("../lib/const");
 
 const authenticate = async (req, res, next) => {
   const authHeader = req.get("Authorization");
-  console.log(authHeader);
   let token = "";
 
   if (authHeader && authHeader.startsWith("Bearer"))

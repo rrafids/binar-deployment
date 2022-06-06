@@ -7,7 +7,6 @@ const path = require("path");
 const upload = require("./utils/fileUpload");
 
 const app = express();
-const PORT = 2000;
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -52,6 +51,10 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // Public File Access
 app.use("/public/files", express.static(path.join(__dirname, "/storages")));
 
-app.listen(process.env.PORT || PORT, () => {
-  console.log(`Server berhasil berjalan di port http://localhost:${PORT}`);
+app.listen(process.env.PORT || 2000, () => {
+  console.log(
+    `Server berhasil berjalan di port http://localhost:${
+      process.env.PORT || 2000
+    }`
+  );
 });
