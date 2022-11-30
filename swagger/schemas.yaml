@@ -1,0 +1,58 @@
+components:
+  schemas:
+    Jsend:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - success
+            - fail
+            - error
+    JsendSuccess:
+      allOf:
+        - $ref: '#/components/schemas/Jsend'
+        - type: object
+          required:
+            - data
+          properties:
+            status:
+              type: string
+              enum:
+                - success
+            data:
+              type: object
+    JsendError:
+      allOf:
+        - $ref: '#/components/schemas/Jsend'
+        - type: object
+          required:
+            - message
+          properties:
+            status:
+              type: string
+              enum:
+                - error
+            message:
+              type: string
+    AuthLogin:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    AuthRegister:
+      type: object
+      properties:
+        role:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    

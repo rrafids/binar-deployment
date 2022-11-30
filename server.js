@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = require("./swagger.json");
+const swaggerJsdoc = require('swagger-jsdoc')
 const cors = require("cors");
 const path = require("path");
 const upload = require("./utils/fileUpload");
@@ -11,6 +11,10 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+
+// SWAGGER
+const swaggerOptions = require('./utils/swaggerOptions')
+const swaggerSpec = swaggerJsdoc(swaggerOptions)
 
 // Import Controllers
 const authController = require("./controllers/authController");
@@ -46,7 +50,7 @@ app.delete(
 );
 
 // API Documentation
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Public File Access
 app.use("/public/files", express.static(path.join(__dirname, "/storages")));
