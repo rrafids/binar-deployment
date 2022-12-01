@@ -1,4 +1,7 @@
 const { Post } = require("../models");
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 
 class PostsRepository {
   static async create({ user_id, title, description }) {
@@ -11,14 +14,38 @@ class PostsRepository {
     return createdPost;
   }
 
-  static async getByID({ id }) {
-    const getPost = await Post.findOne({ where: { id } });
+  static async getAll() {
+    const getPost = await Post.findOne({
+      where: {
+        deletedAt: {
+          [Op.eq]: null
+        }
+      }
+    });
 
     return getPost;
   }
 
-  static async deleteByID({ id }) {
-    const deletedPost = await Post.destroy({ where: { id } });
+  static async getByID({ id }) {
+    const getPost = await Post.findOne({
+      where: {
+        id: id,
+        deletedAt: {
+          [Op.ne]: null
+        }
+      }
+    });
+
+    return getPost;
+  }
+
+  static async deleteByID({ id, userID }) {
+    const deletedPost = await Post.update(
+      {
+        deletedAt: new Date().getTime(),
+        deletedBy: userID
+      },
+      { where: { id } });
 
     return deletedPost;
   }
