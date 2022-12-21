@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const swaggerUi = require("swagger-ui-express");
-const swaggerJsdoc = require('swagger-jsdoc')
+const swaggerJsdoc = require("swagger-jsdoc");
 const cors = require("cors");
 const path = require("path");
 const upload = require("./utils/fileUpload");
@@ -13,11 +13,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 // SWAGGER
-const swaggerOptions = require('./utils/swaggerOptions')
+const swaggerOptions = require("./utils/swaggerOptions")
 const swaggerSpec = swaggerJsdoc(swaggerOptions)
 
 // Import Controllers
-const authController = require("./controllers/authController");
+const auth_Controller = require("./controllers/authController");
 const postsController = require("./controllers/postsController");
 const usersController = require("./controllers/usersController");
 
@@ -31,7 +31,7 @@ app.get("/testing-ci-cd/:id", usersController.getPostsByID);
 
 // Auth
 app.post("/auth/register", upload.single("picture"), authController.register);
-app.post("/auth/login", authController.login);
+app.post("/auth/login", auth_Controller.login);
 app.get("/auth/me", middleware.authenticate, authController.currentUser);
 
 app.post("/auth/login-google", authController.loginGoogle);
