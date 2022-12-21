@@ -21,7 +21,7 @@ describe("create post", () => {
 });
 
 describe("get post by id", () => {
-  it("should create post to db", async () => {
+  it("should get post from db", async () => {
     // Create Data
     const postToCreate = {
       user_id: 1,
@@ -30,7 +30,6 @@ describe("get post by id", () => {
     };
 
     const createdPost = await postRepository.create(postToCreate);
-
     const post = await postRepository.getByID({ id: createdPost.id });
 
     expect(post.user_id).toEqual(createdPost.user_id);

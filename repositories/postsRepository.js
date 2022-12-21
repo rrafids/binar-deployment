@@ -31,7 +31,7 @@ class PostsRepository {
       where: {
         id: id,
         deletedAt: {
-          [Op.ne]: null
+          [Op.eq]: null
         }
       }
     });
