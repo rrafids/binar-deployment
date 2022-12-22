@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --coverage",
     "dev": "nodemon server.js",
+    "start": "node server.js",
     "eslint": "eslint server.js"
   },
   "author": "",
