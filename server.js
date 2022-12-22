@@ -55,10 +55,10 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Public File Access
 app.use("/public/files", express.static(path.join(__dirname, "/storages")));
 
-app.listen(process.env.PORT || 2000, () => {
+app.listen(process.env.PORT, () => {
   console.log(
     `Server berhasil berjalan di port http://localhost:${
-      process.env.PORT || 2000
+      process.env.PORT
     }`
   );
 });
