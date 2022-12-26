@@ -32,7 +32,7 @@ const currentUser = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-
+  
   const { status, status_code, message, data } = await authService.login({
     email,
     password,

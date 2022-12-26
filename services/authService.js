@@ -153,22 +153,20 @@ class AuthService {
 
       const getUser = await usersRepository.getByEmail({ email });
 
-      if (!getUser.password) {
-        return {
-          status: false,
-          status_code: 400,
-          message: "Akun ini belum melakukan setup password.",
-          data: {
-            user: null,
-          },
-        };
-      }
-
       if (!getUser) {
         return {
           status: false,
           status_code: 404,
           message: "Email belum terdaftar",
+          data: {
+            user: null,
+          },
+        };
+      } else if (!getUser.password) {
+        return {
+          status: false,
+          status_code: 400,
+          message: "Akun ini belum melakukan setup password.",
           data: {
             user: null,
           },

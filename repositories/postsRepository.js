@@ -15,7 +15,7 @@ class PostsRepository {
   }
 
   static async getAll() {
-    const getPost = await Post.findOne({
+    const getPost = await Post.findAll({
       where: {
         deletedAt: {
           [Op.eq]: null
@@ -30,9 +30,6 @@ class PostsRepository {
     const getPost = await Post.findOne({
       where: {
         id: id,
-        deletedAt: {
-          [Op.eq]: null
-        }
       }
     });
 
