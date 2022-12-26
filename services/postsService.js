@@ -2,7 +2,6 @@ const postsRepository = require("../repositories/postsRepository");
 
 class PostsService {
   static async create({ user_id, title, description }) {
-    console.log("terpanggil");
     try {
       if (!title) {
         return {

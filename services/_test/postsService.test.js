@@ -27,34 +27,26 @@ describe("create post", () => {
     };
 
     // Create service mock function
-    // const mockPostService = postsService;
+    const mockPostService = postsService;
 
-    // mockPostService.create = jest
-    //   .fn()
-    //   .mockImplementation(() => Promise.resolve(expectedCreatedPostService));
-    // const createdPostResponse = await mockPostService.create(postToCreate);
-
-    const ganteng = await postsService.create(postToCreate);
-
-    console.log("asdasdas");
-    console.log(ganteng);
-    // console.log(createdPostResponse);
-    expect(expectedCreatedPostService.status).toEqual(
-      ganteng.status
-    );
+    mockPostService.create = jest
+      .fn()
+      .mockImplementation(() => Promise.resolve(expectedCreatedPostService));
+    
+    const createdPostResponse = await mockPostService.create(postToCreate);
 
     // Assertion
-    // expect(expectedCreatedPostService.status).toEqual(
-    //   createdPostResponse.status
-    // );
-    // expect(expectedCreatedPostService.status_code).toEqual(
-    //   createdPostResponse.status_code
-    // );
-    // expect(expectedCreatedPostService.message).toEqual(
-    //   createdPostResponse.message
-    // );
-    // expect(expectedCreatedPostService.data.created_post).toEqual(
-    //   createdPostResponse.data.created_post
-    // );
+    expect(expectedCreatedPostService.status).toEqual(
+      createdPostResponse.status
+    );
+    expect(expectedCreatedPostService.status_code).toEqual(
+      createdPostResponse.status_code
+    );
+    expect(expectedCreatedPostService.message).toEqual(
+      createdPostResponse.message
+    );
+    expect(expectedCreatedPostService.data.created_post).toEqual(
+      createdPostResponse.data.created_post
+    );
   });
 });
